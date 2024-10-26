@@ -1,0 +1,22 @@
+{
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:swift-twitch-chat-colors}",
+			"name": "Debug twitch-chat-colors",
+			"program": "${workspaceFolder:swift-twitch-chat-colors}/.build/debug/twitch-chat-colors",
+			"preLaunchTask": "swift: Build Debug twitch-chat-colors"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"args": [],
+			"cwd": "${workspaceFolder:swift-twitch-chat-colors}",
+			"name": "Release twitch-chat-colors",
+			"program": "${workspaceFolder:swift-twitch-chat-colors}/.build/release/twitch-chat-colors",
+			"preLaunchTask": "swift: Build Release twitch-chat-colors"
+		}
+	]
+}

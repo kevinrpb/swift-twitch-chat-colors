@@ -51,6 +51,8 @@ struct MainLayout<Content: HTML>: HTMLDocument {
 		script(.src("https://cdn.tailwindcss.com")) {}
 		script { tailwindConfig }
 		style(.custom(name: "type", value: "text/tailwindcss")) { tailwindCSS }
+
+		link(.rel(.stylesheet), .href("https://unpkg.com/charts.css/dist/charts.min.css"))
 	}
 
 	var body: some HTML {

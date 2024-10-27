@@ -11,7 +11,7 @@ struct HomePage: HTML {
 			)
 		) {
 			div(.class("w-full")) {
-				h1(.class("mb-2 text-3xl font-semibold")) {
+				h1(.class("mb-10 text-3xl text-center font-semibold")) {
 					"Channels"
 				}
 			}
@@ -56,7 +56,7 @@ struct HomePage: HTML {
 				}
 			} else {
 				// TODO: pull the channels from the server config
-				p(.class("p-4")) { "No messages recorded" }
+				p(.class("p-4 text-center")) { "No messages recorded" }
 			}
 		}
 	}

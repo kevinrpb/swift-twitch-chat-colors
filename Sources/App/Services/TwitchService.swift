@@ -16,15 +16,10 @@ struct TwitchService: Service {
 			for try await message in stream {
 				switch message {
 				case let .privateMessage(privateMessage):
-					logger.info(
-						"Private message from <\(privateMessage.displayName)> with color <\(privateMessage.color)>"
-					)
-					try? await StatsManager.shared.add(
-						.init(
-							timestamp: .now, userID: privateMessage.userId,
-							displayName: privateMessage.displayName,
-							displayColor: privateMessage.color)
-					)
+					let stat = Stat(privateMessage: privateMessage)
+
+					logger.info("\(stat)")
+					try? await StatsManager.shared.add(stat)
 				default:
 					logger.info("Skipping message: \(message)")
 				}

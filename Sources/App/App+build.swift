@@ -1,11 +1,12 @@
 import ArgumentParser
 import FluentSQLiteDriver
 import Hummingbird
-import HummingbirdFluent
 import HummingbirdElementary
+import HummingbirdFluent
 import Logging
 
 protocol AppArguments: Sendable {
+	var channels: [String] { get }
 	var hostname: String { get }
 	var port: Int { get }
 }
@@ -25,7 +26,7 @@ extension App {
 		try await fluent.migrate()
 
 		// Twitch
-		let twitch = TwitchService(channel: "kevinrpb", fluent: fluent, logger: logger)
+		let twitch = TwitchService(channels: arguments.channels, fluent: fluent, logger: logger)
 
 		// Router
 		let router = buildRouter(arguments, fluent: fluent)

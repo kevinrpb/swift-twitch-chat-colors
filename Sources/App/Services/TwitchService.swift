@@ -4,7 +4,7 @@ import ServiceLifecycle
 import Twitch
 
 struct TwitchService: Service {
-	let channel: String
+	let channels: [String]
 	let fluent: Fluent
 	let logger: Logger
 
@@ -13,7 +13,9 @@ struct TwitchService: Service {
 		let (stream, continuation) = await client.stream()
 
 		try await withGracefulShutdownHandler {
-			try await client.join(to: channel)
+			for channel in channels {
+				try await client.join(to: channel)
+			}
 
 			for try await message in stream {
 				switch message {

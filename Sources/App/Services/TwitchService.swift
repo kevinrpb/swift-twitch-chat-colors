@@ -1,9 +1,11 @@
+import HummingbirdFluent
 import Logging
 import ServiceLifecycle
 import Twitch
 
 struct TwitchService: Service {
 	let channel: String
+	let fluent: Fluent
 	let logger: Logger
 
 	func run() async throws {
@@ -16,10 +18,14 @@ struct TwitchService: Service {
 			for try await message in stream {
 				switch message {
 				case let .privateMessage(privateMessage):
-					let stat = Stat(privateMessage: privateMessage)
+					let stat = Stat.from(privateMessage: privateMessage)
 
-					logger.info("\(stat)")
-					try? await StatsManager.shared.add(stat)
+					do {
+						try await stat.save(on: fluent.db())
+						logger.info("Saved: \(stat)")
+					} catch {
+						logger.error("Failed to save: \(stat)")
+					}
 				default:
 					logger.info("Skipping message: \(message)")
 				}

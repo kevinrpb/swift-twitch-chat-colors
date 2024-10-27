@@ -1,5 +1,7 @@
 import ArgumentParser
+import FluentSQLiteDriver
 import Hummingbird
+import HummingbirdFluent
 import HummingbirdElementary
 import Logging
 
@@ -15,8 +17,18 @@ extension App {
 		var logger = Logger(label: "twitch-chat-colors")
 		logger.logLevel = .debug
 
+		// Fluent
+		let fluent = Fluent(logger: logger)
+		fluent.databases.use(.sqlite(.memory), as: .sqlite)
+
+		await fluent.migrations.add(CreateStat())
+		try await fluent.migrate()
+
+		// Twitch
+		let twitch = TwitchService(channel: "kevinrpb", fluent: fluent, logger: logger)
+
 		// Router
-		let router = buildRouter(arguments)
+		let router = buildRouter(arguments, fluent: fluent)
 
 		// App
 		var app = Application(
@@ -31,14 +43,14 @@ extension App {
 			logger: logger
 		)
 
-		app.addServices(TwitchService(channel: "kevinrpb", logger: logger))
+		app.addServices(fluent, twitch)
 
 		return app
 	}
 }
 
 extension App {
-	static func buildRouter(_ arguments: some AppArguments) -> Router<
+	static func buildRouter(_ arguments: some AppArguments, fluent: Fluent) -> Router<
 		AppRequestContext
 	> {
 		let router = Router()
@@ -53,6 +65,10 @@ extension App {
 					HomePage()
 				}
 			}
+		}
+
+		router.group("raw").get { _, _ in
+			try await Stat.query(on: fluent.db()).all()
 		}
 
 		return router

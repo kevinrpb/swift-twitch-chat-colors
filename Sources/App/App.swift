@@ -13,15 +13,6 @@ struct App: AppArguments, AsyncParsableCommand {
 
 	func run() async throws {
 		let app = try await Self.buildApp(self)
-
-		try await withThrowingDiscardingTaskGroup { taskGroup in
-			taskGroup.addTask {
-				try await app.runService()
-			}
-
-			taskGroup.addTask {
-				try await Self.setupTwitch(app)
-			}
-		}
+		try await app.runService()
 	}
 }

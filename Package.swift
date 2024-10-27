@@ -15,7 +15,7 @@ let package = Package(
 			url: "https://github.com/hummingbird-community/hummingbird-elementary.git",
 			from: "0.4.0"),
 		.package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
-		.package(url: "https://github.com/LosFarmosCTL/swift-twitch-client", branch: "main"),
+		.package(url: "https://github.com/kevinrpb/swift-twitch-client.git", branch: "irc-return-continuation"),
 	],
 	targets: [
 		.executableTarget(

@@ -1,5 +1,5 @@
 {
-  "originHash" : "aa7574d5fcb2dc58b36649f4b95c61a38720c77f72b19289b1154078d0573dda",
+  "originHash" : "14ec28fc474571be7c027ccd3dfae4ae711e9d0dbab56e6c2fb208d02d7a783e",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -202,10 +202,10 @@
     {
       "identity" : "swift-twitch-client",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LosFarmosCTL/swift-twitch-client",
+      "location" : "https://github.com/kevinrpb/swift-twitch-client.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "4ae19df2c7b20ef07e3c676b460d14d7202fdbb5"
+        "branch" : "irc-return-continuation",
+        "revision" : "69d993ec11129234b4a6874b8f83c7b3cf05e9be"
       }
     },
     {

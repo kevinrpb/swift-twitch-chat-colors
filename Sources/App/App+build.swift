@@ -19,7 +19,7 @@ extension App {
 		let router = buildRouter(arguments)
 
 		// App
-		let app = Application(
+		var app = Application(
 			router: router,
 			configuration: .init(address: .hostname(arguments.hostname, port: arguments.port)),
 			onServerRunning: { _ in
@@ -30,6 +30,8 @@ extension App {
 			},
 			logger: logger
 		)
+
+		app.addServices(TwitchService(channel: "kevinrpb", logger: logger))
 
 		return app
 	}

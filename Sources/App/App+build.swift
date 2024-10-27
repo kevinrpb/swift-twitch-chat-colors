@@ -63,12 +63,25 @@ extension App {
 		router.get("") { _, _ in
 			HTMLResponse {
 				MainLayout(title: "Twitch Chat Colors") {
-					HomePage()
+					HomePage(fluent: fluent)
 				}
 			}
 		}
 
-		router.group("raw").get { _, _ in
+		router.group("channel")
+			.get(":channel") { request, context in
+				guard let channel = context.parameters.get("channel") else {
+					throw HTTPError(.badRequest)
+				}
+
+				return HTMLResponse {
+					MainLayout(title: "\(channel) stats") {
+						ChannelPage(channel: channel, fluent: fluent)
+					}
+				}
+			}
+
+		router.get("raw") { _, _ in
 			try await Stat.query(on: fluent.db()).all()
 		}
 

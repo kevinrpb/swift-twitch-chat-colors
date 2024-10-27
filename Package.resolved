@@ -1,5 +1,5 @@
 {
-  "originHash" : "32c6d4e0e065f63245600f54246b7004ac652316402122296cf22b526b5490db",
+  "originHash" : "aa7574d5fcb2dc58b36649f4b95c61a38720c77f72b19289b1154078d0573dda",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -197,6 +197,33 @@
       "state" : {
         "revision" : "c8a44d836fe7913603e246acab7c528c2e780168",
         "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-twitch-client",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LosFarmosCTL/swift-twitch-client",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4ae19df2c7b20ef07e3c676b460d14d7202fdbb5"
+      }
+    },
+    {
+      "identity" : "twitchirc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MahdiBM/TwitchIRC",
+      "state" : {
+        "revision" : "036f70385fe4f6d30ad2634699eb1e8e00b52087",
+        "version" : "1.6.0"
+      }
+    },
+    {
+      "identity" : "websocket-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/websocket-kit",
+      "state" : {
+        "revision" : "4232d34efa49f633ba61afde365d3896fc7f8740",
+        "version" : "2.15.0"
       }
     }
   ],

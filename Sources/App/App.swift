@@ -1,6 +1,7 @@
 import ArgumentParser
 import Hummingbird
 import HummingbirdElementary
+import Twitch
 
 @main
 struct App: AppArguments, AsyncParsableCommand {
@@ -16,6 +17,10 @@ struct App: AppArguments, AsyncParsableCommand {
 		try await withThrowingDiscardingTaskGroup { taskGroup in
 			taskGroup.addTask {
 				try await app.runService()
+			}
+
+			taskGroup.addTask {
+				try await Self.setupTwitch(app)
 			}
 		}
 	}

@@ -15,6 +15,7 @@ let package = Package(
 			url: "https://github.com/hummingbird-community/hummingbird-elementary.git",
 			from: "0.4.0"),
 		.package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
+		.package(url: "https://github.com/LosFarmosCTL/swift-twitch-client", branch: "main"),
 	],
 	targets: [
 		.executableTarget(
@@ -24,6 +25,7 @@ let package = Package(
 				.product(name: "Elementary", package: "elementary"),
 				.product(name: "Hummingbird", package: "hummingbird"),
 				.product(name: "HummingbirdElementary", package: "hummingbird-elementary"),
+				.product(name: "Twitch", package: "swift-twitch-client"),
 			]
 		),
 		.testTarget(

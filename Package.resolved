@@ -249,8 +249,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swift-server/swift-service-lifecycle.git",
       "state" : {
-        "revision" : "24c800fb494fbee6e42bc156dc94232dc08971af",
-        "version" : "2.6.1"
+        "revision" : "f70b838872863396a25694d8b19fe58bcd0b7903",
+        "version" : "2.6.2"
       }
     },
     {
@@ -268,7 +268,7 @@
       "location" : "https://github.com/kevinrpb/swift-twitch-client.git",
       "state" : {
         "branch" : "irc-return-continuation",
-        "revision" : "9d4bb7de2d249fdfcb9627eb7a77ec564d48f9a2"
+        "revision" : "154d011ce6becb7e0f67162b7e3de7e9ad3215ac"
       }
     },
     {

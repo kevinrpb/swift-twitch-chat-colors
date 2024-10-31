@@ -2,6 +2,7 @@ import HummingbirdFluent
 import Logging
 import ServiceLifecycle
 import Twitch
+import TwitchWebsocketKit
 
 struct TwitchService: Service {
 	let channels: [String]
@@ -9,7 +10,7 @@ struct TwitchService: Service {
 	let logger: Logger
 
 	func run() async throws {
-		let client = try await TwitchIRCClient(.anonymous)
+		let client = try await TwitchIRCClient<WebsocketKitTaskProvider>(.anonymous)
 		let (stream, continuation) = await client.stream()
 
 		try await withGracefulShutdownHandler {

@@ -33,6 +33,7 @@ let package = Package(
 				.product(name: "HummingbirdElementary", package: "hummingbird-elementary"),
 				.product(name: "HummingbirdFluent", package: "hummingbird-fluent"),
 				.product(name: "Twitch", package: "swift-twitch-client"),
+				.product(name: "TwitchWebsocketKit", package: "swift-twitch-client"),
 			]
 		),
 		.testTarget(

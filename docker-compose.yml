@@ -3,18 +3,23 @@ x-shared_environment: &shared_environment
 
 services:
     app:
-        image: swift-twitch-chat-colors:latest
-        build:
-            context: https://github.com/kevinrpb/swift-twitch-chat-colors.git
+        # Replace this line by the ones commented below to build the image from the repository.
+        image: kevinrpb/swift-twitch-chat-colors:latest
+        # image: swift-twitch-chat-colors:latest
+        # build:
+        #     context: https://github.com/kevinrpb/swift-twitch-chat-colors.git
         environment:
             <<: *shared_environment
-        volumes:
-            - ./db_data/:/db_data/
+        # Uncomment to mount a directory. This is useful if you use a file DB.
+        # volumes:
+        #     - ./db_data/:/db_data/
         ports:
             - "8080:8080"
         command: [
             "--hostname", "0.0.0.0",
             "--port", "8080",
-            "--db-path", "/db_data/db.sqlite",
+            # Uncomment and remove next line to use a file as DB instead of memory
+            # "--db-path", "/db_data/db.sqlite",
+            "--db-memory",
             "-c", "kevinrpb"
         ]

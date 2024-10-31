@@ -10,6 +10,7 @@ protocol AppArguments: Sendable {
 	var hostname: String { get }
 	var port: Int { get }
 	var dbPath: String { get }
+	var dbMemory: Bool { get }
 }
 
 typealias AppRequestContext = BasicRequestContext
@@ -24,7 +25,11 @@ extension App {
 		#if DEBUG
 			fluent.databases.use(.sqlite(.memory), as: .sqlite)
 		#else
-			fluent.databases.use(.sqlite(.file(arguments.dbPath)), as: .sqlite)
+			if arguments.dbMemory {
+				fluent.databases.use(.sqlite(.memory), as: .sqlite)
+			} else {
+				fluent.databases.use(.sqlite(.file(arguments.dbPath)), as: .sqlite)
+			}
 		#endif
 
 		await fluent.migrations.add(CreateStat())

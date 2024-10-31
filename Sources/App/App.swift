@@ -17,6 +17,9 @@ struct App: AppArguments, AsyncParsableCommand {
 	@Option(name: .long)
 	var dbPath: String = "./db.sqlite"
 
+	@Flag(name: .long)
+	var dbMemory: Bool = false
+
 	func run() async throws {
 		let app = try await Self.buildApp(self)
 		try await app.runService()

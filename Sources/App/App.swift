@@ -14,6 +14,9 @@ struct App: AppArguments, AsyncParsableCommand {
 	@Option(name: .shortAndLong)
 	var port: Int = 8080
 
+	@Option(name: .long)
+	var dbPath: String = "./db.sqlite"
+
 	func run() async throws {
 		let app = try await Self.buildApp(self)
 		try await app.runService()

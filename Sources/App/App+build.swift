@@ -9,6 +9,7 @@ protocol AppArguments: Sendable {
 	var channels: [String] { get }
 	var hostname: String { get }
 	var port: Int { get }
+	var dbPath: String { get }
 }
 
 typealias AppRequestContext = BasicRequestContext
@@ -20,7 +21,11 @@ extension App {
 
 		// Fluent
 		let fluent = Fluent(logger: logger)
-		fluent.databases.use(.sqlite(.memory), as: .sqlite)
+		#if DEBUG
+			fluent.databases.use(.sqlite(.memory), as: .sqlite)
+		#else
+			fluent.databases.use(.sqlite(.file(arguments.dbPath)), as: .sqlite)
+		#endif
 
 		await fluent.migrations.add(CreateStat())
 		try await fluent.migrate()

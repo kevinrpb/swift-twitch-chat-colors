@@ -1,0 +1,20 @@
+x-shared_environment: &shared_environment
+    LOG_LEVEL: ${LOG_LEVEL:-debug}
+
+services:
+    app:
+        image: swift-twitch-chat-colors:latest
+        build:
+            context: https://github.com/kevinrpb/swift-twitch-chat-colors.git
+        environment:
+            <<: *shared_environment
+        volumes:
+            - ./db_data/:/db_data/
+        ports:
+            - "8080:8080"
+        command: [
+            "--hostname", "0.0.0.0",
+            "--port", "8080",
+            "--db-path", "/db_data/db.sqlite",
+            "-c", "kevinrpb"
+        ]

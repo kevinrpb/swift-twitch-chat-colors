@@ -268,7 +268,7 @@
       "location" : "https://github.com/kevinrpb/swift-twitch-client.git",
       "state" : {
         "branch" : "irc-return-continuation",
-        "revision" : "154d011ce6becb7e0f67162b7e3de7e9ad3215ac"
+        "revision" : "c860645701381914a3272a3f63424598d5087fad"
       }
     },
     {
